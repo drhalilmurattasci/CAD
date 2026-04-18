@@ -1,0 +1,52 @@
+[workspace]
+members = [
+    "crates/engine",
+    "crates/editor",
+    "crates/editor-ui",
+    "crates/reflect-derive",
+    "crates/render",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+# Matches the pinned MSRV in `lib/rustcad`. Edition 2024 requires
+# 1.85+ and both workspaces declare it so the cross-workspace
+# `path = "../../lib/rustcad"` inheritance resolves cleanly.
+rust-version = "1.85"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+authors = ["OpenAI Codex"]
+
+[workspace.dependencies]
+anyhow = "1.0.100"
+bytemuck = { version = "1", features = ["derive"] }
+# I-18: pure-Rust glTF parser. We disable default features (no image
+# crate, no validation) to keep the engine's compile surface tight —
+# geometry-only import is all we need for the first mesh landing.
+gltf = { version = "1.4", default-features = false, features = ["utils", "names"] }
+eframe = { version = "0.33.3", default-features = false, features = ["default_fonts", "wgpu"] }
+glam = { version = "0.29", features = ["bytemuck"] }
+hecs = "0.10"
+# I-24: filesystem watcher. notify 6 is the current stable line that
+# ships with async-safe cross-platform backends (ReadDirectoryChangesW
+# on Windows, inotify on Linux, FSEvents on macOS). We only need the
+# blocking PollWatcher + RecommendedWatcher APIs.
+notify = "6"
+ron = "0.10.1"
+# I-35: scripting. Rhai is pure-Rust, sandboxed by default, and its
+# float-arithmetic feature is on in the default profile — `sin`/`cos`/
+# `sqrt` etc. "just work" inside scripts without a helper registration
+# dance. Pinned to 1.19 because that's the last minor line before the
+# 2.0 breaking-changes milestone; we can bump once that settles.
+rhai = { version = "1.19", default-features = false, features = ["std", "no_time"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
+thiserror = "2.0.17"
+uuid = { version = "1.18.1", features = ["serde", "v4"] }
+# Pull wgpu directly so default backend features are enabled. eframe 0.33's
+# `wgpu` feature only brings in the abstraction; without a backend feature
+# on the `wgpu` crate itself the runtime panics with "No wgpu backend
+# feature that is implemented for the target platform was enabled." Keep
+# wgpu defaults (dx12 on Windows, metal on macOS, vulkan on Linux).
+wgpu = "27"

@@ -1,0 +1,7 @@
+{
+  "name": "RustForge Sandbox",
+  "startup_scene": "assets/scenes/sandbox.scene.ron",
+  "asset_roots": [
+    "assets"
+  ]
+}

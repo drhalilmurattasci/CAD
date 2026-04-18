@@ -1,0 +1,33 @@
+[package]
+name = "editor-ui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+bytemuck.workspace = true
+eframe.workspace = true
+glam.workspace = true
+# I-32: decode PNG/JPEG albedo textures off disk before pushing them
+# into the render crate's `TextureRegistry`. The `image` crate is
+# already pulled transitively through eframe's egui_extras; naming it
+# as a direct dep pins the feature set so we don't rely on that chain
+# staying active.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+notify.workspace = true
+ron.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+engine = { path = "../engine", features = ["editor"] }
+render = { path = "../render" }
+# I-29: audio playback via cpal/rodio. Keep default features (WAV, OGG
+# Vorbis, MP3, FLAC decoders) so bootstrapped projects can drop any
+# common clip format into `assets/audio/` without a format-specific
+# feature flip. Ships cross-platform backends (wasapi, coreaudio,
+# alsa) that plug into the existing OS audio device.
+rodio = "0.20"
+thiserror.workspace = true
+# Direct dep so Cargo feature-unifies our backend selection onto the
+# transitive wgpu eframe brings in.
+wgpu.workspace = true

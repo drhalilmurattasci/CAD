@@ -1,0 +1,29 @@
+[package]
+name = "engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+default = []
+editor = []
+
+[dependencies]
+glam.workspace = true
+gltf.workspace = true
+hecs.workspace = true
+rhai.workspace = true
+ron.workspace = true
+reflect-derive = { path = "../reflect-derive" }
+serde.workspace = true
+thiserror.workspace = true
+uuid.workspace = true
+
+# The reusable input + events types live in the standalone `rustcad`
+# crate (`../../lib/rustcad`), shaped after egui: one crate, curated
+# modules. `engine::{input,events}` remain available as re-export
+# shims in `src/input.rs` and `src/events.rs` so existing call sites
+# don't change. See `lib/Cargo.toml` for the separate workspace
+# manifest that owns rustcad.
+rustcad = { path = "../../lib/rustcad" }

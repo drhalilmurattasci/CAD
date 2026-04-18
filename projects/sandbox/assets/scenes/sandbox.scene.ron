@@ -1,0 +1,268 @@
+(
+    name: "Sandbox",
+    root_entities: [
+        (
+            id: (1),
+            name: "Editor Camera",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "x": F64(0.0),
+                        "y": F64(2.5),
+                        "z": F64(-6.0),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (2),
+            name: "Player",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "x": F64(1.0),
+                        "y": F64(3.0),
+                        "z": F64(0.0),
+                    },
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "primitive": String("cube"),
+                    },
+                ),
+                (
+                    type_name: "Mover",
+                    fields: {
+                        "speed": F64(3.0),
+                    },
+                ),
+                (
+                    type_name: "Collider",
+                    fields: {},
+                ),
+                (
+                    type_name: "RigidBody",
+                    fields: {},
+                ),
+                (
+                    type_name: "Material",
+                    fields: {
+                        "albedo_texture": String("textures/checker.png"),
+                        "color_a": F64(1.0),
+                        "color_b": F64(0.2),
+                        "color_g": F64(0.25),
+                        "color_r": F64(0.9),
+                    },
+                ),
+                (
+                    type_name: "AudioSource",
+                    fields: {
+                        "autoplay": Bool(true),
+                        "source": String("audio/impact.wav"),
+                        "volume": F64(0.6),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (3),
+            name: "Key Light",
+            components: [
+                (
+                    type_name: "Light",
+                    fields: {
+                        "casts_shadows": Bool(true),
+                        "intensity": F64(4500.0),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (20),
+            name: "Play Camera",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "x": F64(0.0),
+                        "y": F64(2.0),
+                        "z": F64(-8.0),
+                    },
+                ),
+                (
+                    type_name: "Camera",
+                    fields: {
+                        "far": F64(500.0),
+                        "fov": F64(60.0),
+                        "is_primary": Bool(true),
+                        "near": F64(0.1),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (4),
+            name: "SpinCube Center",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {},
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "primitive": String("cube"),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (5),
+            name: "SpinCube Right",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "scale": F64(0.6),
+                        "x": F64(2.5),
+                    },
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "primitive": String("cube"),
+                    },
+                ),
+                (
+                    type_name: "Material",
+                    fields: {
+                        "color_b": F64(0.2),
+                        "color_g": F64(0.75),
+                        "color_r": F64(0.95),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (6),
+            name: "Static Block Left",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "scale": F64(0.8),
+                        "x": F64(-2.5),
+                    },
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "primitive": String("cube"),
+                    },
+                ),
+                (
+                    type_name: "Material",
+                    fields: {
+                        "color_b": F64(0.7),
+                        "color_g": F64(0.6),
+                        "color_r": F64(0.15),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (8),
+            name: "Ground",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "scale": F64(1.0),
+                        "y": F64(-1.0),
+                    },
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "primitive": String("cube"),
+                    },
+                ),
+                (
+                    type_name: "Collider",
+                    fields: {
+                        "x": F64(10.0),
+                        "y": F64(0.5),
+                        "z": F64(10.0),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (9),
+            name: "Scripted Spinner",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "x": F64(0.0),
+                        "y": F64(0.5),
+                        "z": F64(-2.5),
+                    },
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "primitive": String("cube"),
+                    },
+                ),
+                (
+                    type_name: "Material",
+                    fields: {
+                        "color_b": F64(0.95),
+                        "color_g": F64(0.55),
+                        "color_r": F64(0.25),
+                    },
+                ),
+                (
+                    type_name: "Script",
+                    fields: {
+                        "source": String("scripts/spinner.rhai"),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+        (
+            id: (7),
+            name: "Imported Tetrahedron",
+            components: [
+                (
+                    type_name: "Transform",
+                    fields: {
+                        "x": F64(0.0),
+                        "y": F64(0.0),
+                        "z": F64(2.5),
+                    },
+                ),
+                (
+                    type_name: "Mesh",
+                    fields: {
+                        "source": String("meshes/tetrahedron.gltf"),
+                    },
+                ),
+            ],
+            children: [],
+        ),
+    ],
+)

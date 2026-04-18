@@ -1,0 +1,17 @@
+(
+    root: (
+        id: (2),
+        name: "Player",
+        components: [
+            (
+                type_name: "Transform",
+                fields: {
+                    "x": F64(1.0),
+                    "y": F64(0.0),
+                    "z": F64(0.0),
+                },
+            ),
+        ],
+        children: [],
+    ),
+)

@@ -1,0 +1,43 @@
+[package]
+name = "rustcad"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "RustCAD — a framework-agnostic toolkit for game tooling. Curated primitives (input, events, …) shaped after egui: one crate, many modules."
+readme = "README.md"
+# Surface in `cargo search` and on crates.io sidebars. Five max for
+# keywords (Cargo's limit); categories must come from the published
+# slug list at https://crates.io/category_slugs.
+keywords = ["gamedev", "game-tools", "editor", "toolkit", "primitives"]
+categories = ["game-development", "gui", "data-structures"]
+
+# The shape deliberately mirrors `egui`: one public crate, curated
+# modules inside it, a `prelude` for quick imports. Everything here is
+# `std`-only and framework-agnostic — the whole point of this crate is
+# that a downstream project can drop `rustcad` into a totally unrelated
+# app and the code still works without pulling an engine, a renderer,
+# or an editor along for the ride.
+#
+# Add a new module to `src/lib.rs` (and a sibling `src/<name>.rs` file).
+# If the module needs a new third-party dep, prefer making it optional
+# behind a feature gate so the "frugal core" stays install-light.
+[dependencies]
+serde = { workspace = true, optional = true }
+# Pure linalg crate — same version the parent workspace pins, so a
+# rustcad + parent-workspace consumer gets one glam in its tree.
+# Required by `rustcad::math` and every `rustcad::cad` submodule.
+glam = { workspace = true }
+# Derive-macro-based error enums. Used by `rustcad::cad::*` modules
+# whose operations surface typed failure modes (solver divergence,
+# boolean incompatibility, …). Kept light — no runtime deps.
+thiserror = { workspace = true }
+
+[features]
+# `serde` integration is opt-in. Events wants it (the `EditorEvent`
+# enum gets persisted into telemetry / IPC fixtures); input doesn't.
+# Default ON so the common case — editor host pulls `rustcad` — gets
+# everything wired without feature juggling.
+default = ["serde"]
+serde = ["dep:serde"]

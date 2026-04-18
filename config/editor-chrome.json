@@ -1,0 +1,257 @@
+{
+  "menus": [
+    {
+      "id": "file",
+      "label": "File",
+      "entries": [
+        {
+          "kind": "action",
+          "id": "file.new_scene",
+          "label": "New Scene",
+          "icon": "scene",
+          "tooltip": "Create a new scene document",
+          "shortcut": "Ctrl+N"
+        },
+        {
+          "kind": "action",
+          "id": "file.open_project",
+          "label": "Open Project",
+          "icon": "folder",
+          "tooltip": "Open a project folder",
+          "shortcut": "Ctrl+O"
+        },
+        {
+          "kind": "action",
+          "id": "file.save_scene",
+          "label": "Save Scene",
+          "icon": "save",
+          "tooltip": "Save the active scene",
+          "shortcut": "Ctrl+S"
+        }
+      ]
+    },
+    {
+      "id": "edit",
+      "label": "Edit",
+      "entries": [
+        {
+          "kind": "action",
+          "id": "edit.undo",
+          "label": "Undo",
+          "icon": "activity",
+          "tooltip": "Undo the last scene change",
+          "shortcut": "Ctrl+Z"
+        },
+        {
+          "kind": "action",
+          "id": "edit.redo",
+          "label": "Redo",
+          "icon": "activity",
+          "tooltip": "Redo the last undone scene change",
+          "shortcut": "Ctrl+Shift+Z"
+        },
+        {
+          "kind": "separator"
+        },
+        {
+          "kind": "action",
+          "id": "edit.focus_search",
+          "label": "Focus Search",
+          "icon": "search",
+          "tooltip": "Jump to search",
+          "shortcut": "Ctrl+K"
+        }
+      ]
+    },
+    {
+      "id": "view",
+      "label": "View",
+      "entries": [
+        {
+          "kind": "action",
+          "id": "panel.console",
+          "label": "Toggle Console",
+          "icon": "console",
+          "tooltip": "Show or hide the console panel",
+          "shortcut": "Ctrl+`"
+        },
+        {
+          "kind": "action",
+          "id": "panel.profiler",
+          "label": "Toggle Profiler",
+          "icon": "profiler",
+          "tooltip": "Show or hide the profiler panel",
+          "shortcut": "Shift+P"
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "label": "Play",
+      "entries": [
+        {
+          "kind": "action",
+          "id": "play.toggle",
+          "label": "Play / Stop",
+          "icon": "play",
+          "tooltip": "Toggle play-in-editor",
+          "shortcut": "F5"
+        },
+        {
+          "kind": "action",
+          "id": "play.pause",
+          "label": "Pause",
+          "icon": "pause",
+          "tooltip": "Pause simulation",
+          "shortcut": "F6"
+        }
+      ]
+    }
+  ],
+  "toolbar": [
+    {
+      "id": "file.open_project",
+      "label": "Open",
+      "icon": "folder",
+      "tooltip": "Open project",
+      "shortcut": "Ctrl+O"
+    },
+    {
+      "id": "file.save_scene",
+      "label": "Save",
+      "icon": "save",
+      "tooltip": "Save scene",
+      "shortcut": "Ctrl+S"
+    },
+    {
+      "id": "edit.undo",
+      "label": "Undo",
+      "icon": "activity",
+      "tooltip": "Undo",
+      "shortcut": "Ctrl+Z"
+    },
+    {
+      "id": "edit.redo",
+      "label": "Redo",
+      "icon": "activity",
+      "tooltip": "Redo",
+      "shortcut": "Ctrl+Shift+Z"
+    },
+    {
+      "id": "edit.focus_search",
+      "label": "Search",
+      "icon": "search",
+      "tooltip": "Focus search",
+      "shortcut": "Ctrl+K"
+    },
+    {
+      "id": "play.toggle",
+      "label": "Play",
+      "icon": "play",
+      "tooltip": "Play or stop",
+      "shortcut": "F5"
+    },
+    {
+      "id": "play.pause",
+      "label": "Pause",
+      "icon": "pause",
+      "tooltip": "Pause simulation",
+      "shortcut": "F6"
+    },
+    {
+      "id": "play.stop",
+      "label": "Stop",
+      "icon": "stop",
+      "tooltip": "Stop PIE",
+      "shortcut": "F7"
+    }
+  ],
+  "panels": [
+    {
+      "id": "hierarchy",
+      "label": "Hierarchy",
+      "tab": "Hierarchy",
+      "icon": "hierarchy",
+      "region": "left",
+      "kind": "hierarchy",
+      "visible": true
+    },
+    {
+      "id": "content_browser",
+      "label": "Content Browser",
+      "tab": "Content",
+      "icon": "content",
+      "region": "left",
+      "kind": "content_browser",
+      "visible": true
+    },
+    {
+      "id": "viewport",
+      "label": "Viewport",
+      "tab": "Viewport",
+      "icon": "viewport",
+      "region": "center",
+      "kind": "viewport",
+      "visible": true
+    },
+    {
+      "id": "inspector",
+      "label": "Inspector",
+      "tab": "Inspector",
+      "icon": "inspector",
+      "region": "right",
+      "kind": "inspector",
+      "visible": true
+    },
+    {
+      "id": "console",
+      "label": "Console",
+      "tab": "Console",
+      "icon": "console",
+      "region": "bottom",
+      "kind": "console",
+      "visible": true
+    },
+    {
+      "id": "profiler",
+      "label": "Profiler",
+      "tab": "Profiler",
+      "icon": "profiler",
+      "region": "bottom",
+      "kind": "profiler",
+      "visible": true
+    }
+  ],
+  "status_items": [
+    {
+      "id": "scene",
+      "label": "Scene",
+      "icon": "scene",
+      "value_key": "scene"
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "icon": "activity",
+      "value_key": "history"
+    },
+    {
+      "id": "selection",
+      "label": "Selection",
+      "icon": "inspector",
+      "value_key": "selection"
+    },
+    {
+      "id": "play_mode",
+      "label": "Mode",
+      "icon": "play",
+      "value_key": "play_mode"
+    },
+    {
+      "id": "fps",
+      "label": "Perf",
+      "icon": "activity",
+      "value_key": "fps"
+    }
+  ]
+}

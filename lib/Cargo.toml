@@ -1,0 +1,48 @@
+# Standalone "lib" workspace — reusable building blocks extracted from
+# the GameCAD editor so they can be lifted into other projects without
+# dragging the whole engine along. Deliberately kept separate from the
+# top-level `GAMECAD` workspace at `../Cargo.toml`:
+#
+#   * The top-level workspace depends on `rustcad` via
+#     `path = "../../lib/rustcad"`, which `cargo` resolves across
+#     workspace boundaries just fine.
+#   * Keeping the directories split means a future `cargo publish` run
+#     can target `rustcad` on its own without publishing any of the
+#     editor / renderer code that lives in `../crates`.
+#
+# ## Shape
+#
+# The library is shaped after **egui**: one crate, several curated
+# modules. The single `rustcad` crate owns `rustcad::input`,
+# `rustcad::events`, and a `rustcad::prelude` — and future extractions
+# (math helpers, undo/redo, reflection primitives) will land as sibling
+# modules inside that same crate rather than as sibling workspace
+# members. One crate, one `cargo add rustcad`, one import surface.
+#
+# The pre-rename layout had sibling `input/` and `events/` crates here.
+# Those were folded into `rustcad/src/{input,events}.rs` so downstream
+# consumers don't have to wire up N separate dependencies to pull the
+# umbrella.
+[workspace]
+members = [
+    "rustcad",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+# Edition 2024 requires toolchain 1.85+. Pin it explicitly so `cargo
+# publish` records an honest MSRV and older toolchains fail loudly at
+# install time instead of emitting cryptic parse errors.
+rust-version = "1.85"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+authors = ["OpenAI Codex"]
+
+# Shared pinned versions mirror the parent workspace so crates here stay
+# individually consumable: drop `rustcad` into a different project and
+# it builds against the exact versions it was developed with.
+[workspace.dependencies]
+glam = { version = "0.29", features = ["bytemuck"] }
+serde = { version = "1.0.228", features = ["derive"] }
+thiserror = "2.0.17"
